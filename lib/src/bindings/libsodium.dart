@@ -2,20 +2,27 @@ import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter_sodium/flutter_sodium.dart';
+final android_path = 'libsodium.so';
+final mac_os_path = '/usr/local/lib/libsodium.dylib';
 
 final libsodium = _load();
 
 DynamicLibrary _load() {
   if (Platform.isAndroid) {
-    return DynamicLibrary.open('libsodium.so');
+    print(android_path);
+    return DynamicLibrary.open(android_path);
   }
   if (Platform.isIOS) {
-    return DynamicLibrary.process();
+    print('getting path from DynamicLibrary.process()...');
+    DynamicLibrary _lib = DynamicLibrary.process();
+    print(_lib);
+    return _lib;
   }
   if (Platform.isMacOS) {
     // assuming user installed libsodium as per the installation instructions
     // see also https://libsodium.gitbook.io/doc/installation
-    return DynamicLibrary.open('/usr/local/lib/libsodium.dylib');
+    print(mac_os_path);
+    return DynamicLibrary.open(mac_os_path);
   }
   if (Platform.isLinux) {
     // assuming user installed libsodium as per the installation instructions

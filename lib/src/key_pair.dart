@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart' if (material.dart) 'package:flutter/foundation.dart';
 
 /// Represents a secret key and a corresponding public key.
 class KeyPair {

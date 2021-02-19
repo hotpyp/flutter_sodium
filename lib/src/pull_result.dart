@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart' if (material.dart) 'package:flutter/foundation.dart';
 
 class PullResult {
   final Uint8List m;
